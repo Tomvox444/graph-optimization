@@ -34,7 +34,7 @@ def get_color_and_width(flow, capacity):
             
     return color, width, saturation
 
-def visualiser_flot(graph_obj, file_name="flow_solution.html"):
+def visualiser_flot(graph_obj, source, puit, file_name="flow_solution.html"):
     """
     Génère une visualisation HTML interactive du réseau de flot final (PyVis).
     Optimisé pour tenter de contourner les problèmes de rendu local.
@@ -91,8 +91,7 @@ def visualiser_flot(graph_obj, file_name="flow_solution.html"):
         for v in graph_obj.adj[u]:
             all_nodes.add(v)
             
-    # Identification du puits (le plus grand ID)
-    max_node_id = max(all_nodes) if all_nodes else -1
+
 
     for n in all_nodes:
         # Par défaut
@@ -101,11 +100,11 @@ def visualiser_flot(graph_obj, file_name="flow_solution.html"):
         label_node = f"{n}"
 
         # Personnalisation Source (0) et Puits (max_node_id)
-        if n == 0:
+        if n == source:
             color_node = "#00FF00" # Vert
             size_node = 25
             label_node = f"Source ({n})"
-        elif n == max_node_id:
+        elif n == puit:
             color_node = "#FF0000" # Rouge
             size_node = 25
             label_node = f"Puits ({n})"
@@ -116,8 +115,8 @@ def visualiser_flot(graph_obj, file_name="flow_solution.html"):
         for v, data in graph_obj.adj[u].items():
             cap, flow = data
             
-            # FILTRE : On n'affiche que les arcs qui avaient une capacité réelle ET qui transportent du flux.
-            if cap > 0 and flow > 0: 
+            # FILTRE : On n'affiche que les arcs qui avaient une capacité réelle OU qui transportent du flux.
+            if cap > 0 or flow > 0: 
                 
                 # Récupération des attributs de style
                 color, width, _ = get_color_and_width(flow, cap)

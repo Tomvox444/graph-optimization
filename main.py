@@ -8,18 +8,14 @@ from src.graph import Graph
 from src.io_manager import read_graph, write_flow
 from src.algorithm import edmonds_karp, theorem_menger, analyse_spectrale
 from src.visualizer import visualiser_flot
+from src.affichage import start_interface
 
 def main():
-   # 1. Gestion des arguments en ligne de commande
-   if len(sys.argv) < 2:
-      print("Usage: python3 main.py <fichier_entree.txt>")
-      print("Exemple: python3 main.py data/input.txt")
-      sys.exit(1)
+   # 1. Interface Utilisateur pour les paramètres d'entrée
+   _, _, _, source, puits, input_file = start_interface()
 
-   input_file = sys.argv[1]
+   input_file = os.path.join("data", input_file)
    
-   # On définit le nom du fichier de sortie (ex: input_sol.txt)
-   base_name = os.path.splitext(input_file)[0]
    output_file = f"data/output.txt"
 
    print(f"--- Projet Théorie des Graphes : Flot Maximal ---")
@@ -34,17 +30,11 @@ def main():
       sys.exit(1)
 
    # 3. Détermination automatique de la Source et du Puits
-   # HYPOTHÈSE : Dans ce type de projet, souvent :
-   # - La Source (S) est le sommet avec le plus petit ID (souvent 0 ou 1)
-   # - Le Puits (T) est le sommet avec le plus grand ID
-   # (Tu pourras modifier ça si le sujet précise autre chose)
    sommets = g.get_all_vertices()
    if not sommets:
       print("[!] Le graphe est vide.")
       sys.exit(1)
       
-   source = min(sommets)
-   puits = max(sommets)
    
    print(f"[*] Graphe chargé : {len(sommets)} sommets.")
    print(f"[*] Configuration détectée -> Source: {source}, Puits: {puits}")
@@ -80,7 +70,7 @@ def main():
       print(f"[!] Erreur lors de l'écriture du fichier : {e}")
    # 7. Visualisation (optionnelle)
    try:
-      visualiser_flot(g, file_name="flow_solution.html")
+      visualiser_flot(g, source, puits, file_name="flow_solution.html")
    except Exception as e:
       print(f"[!] Erreur lors de la visualisation : {e}")
 
