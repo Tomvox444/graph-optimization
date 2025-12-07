@@ -17,6 +17,7 @@ venv:
 		$(PYTHON) -m venv $(VENV_DIR); \
 		echo "Virtual environment created."; \
 	fi
+	source $(VENV_DIR)/bin/activate
 
 # Install requirements in virtual environment
 install: venv
