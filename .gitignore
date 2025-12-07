@@ -1,0 +1,16 @@
+# Ignore data directory
+data/
+
+# Ignore lib directory
+lib/
+
+# Ignore html directory
+html/
+*.html
+
+# Ignore temporary files
+*.tmp
+
+#igore pycache files
+src/__pycache__/
+
