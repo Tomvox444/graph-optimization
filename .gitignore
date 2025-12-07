@@ -4,6 +4,11 @@ data/
 # Ignore lib directory
 lib/
 
+# Ignore venv
+venv/
+__pycache__/
+*.pyc
+
 # Ignore html directory
 html/
 *.html
