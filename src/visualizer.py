@@ -116,7 +116,7 @@ def visualiser_flot(graph_obj, source, puit, file_name="flow_solution.html"):
             cap, flow = data
             
             # FILTRE : On n'affiche que les arcs qui avaient une capacité réelle OU qui transportent du flux.
-            if cap > 0 or flow > 0: 
+            if cap > 0 and flow > 0: 
                 
                 # Récupération des attributs de style
                 color, width, _ = get_color_and_width(flow, cap)
