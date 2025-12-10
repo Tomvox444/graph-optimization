@@ -99,7 +99,6 @@ def visualiser_flot(graph_obj, source, puit, file_name="flow_solution.html"):
         size_node = 10
         label_node = f"{n}"
 
-        # Personnalisation Source (0) et Puits (max_node_id)
         if n == source:
             color_node = "#00FF00" # Vert
             size_node = 25
@@ -114,6 +113,8 @@ def visualiser_flot(graph_obj, source, puit, file_name="flow_solution.html"):
     for u in graph_obj.adj:
         for v, data in graph_obj.adj[u].items():
             cap, flow = data
+            if file_name == "initial_graph.html":
+                flow = 1 # Pour la visualisation initiale, on met le flot à 100% de la capacité
             
             # FILTRE : On n'affiche que les arcs qui avaient une capacité réelle OU qui transportent du flux.
             if cap > 0 and flow > 0: 

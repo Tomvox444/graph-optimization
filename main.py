@@ -29,12 +29,18 @@ def main():
       print(f"[!] Erreur critique lors de la lecture : {e}")
       sys.exit(1)
 
-   # 3. Détermination automatique de la Source et du Puits
+   try:
+      visualiser_flot(g, source, puits, file_name="initial_graph.html")
+   except Exception as e:
+      print(f"[!] Erreur lors de la visualisation : {e}")
+
+   # 3. Vérification du graphe
    sommets = g.get_all_vertices()
    if not sommets:
       print("[!] Le graphe est vide.")
       sys.exit(1)
-      
+
+
    
    print(f"[*] Graphe chargé : {len(sommets)} sommets.")
    print(f"[*] Configuration détectée -> Source: {source}, Puits: {puits}")
