@@ -60,7 +60,7 @@ class Graph:
         # On ajoute du flux dans le sens u -> v
         self.adj[u][v][1] += amount
         
-        # On retire du flux dans le sens v -> u (Symétrie antisymétrique)
+        # On retire du flux dans le sens v -> u 
         # Cela permet à l'algorithme de "voir" qu'on peut annuler ce flux plus tard.
         self.adj[v][u][1] -= amount
 

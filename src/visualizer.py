@@ -19,10 +19,8 @@ def get_color_and_width(flow, capacity):
     width = max(1, log(flow_magnitude + 1) * 2)
         
     # Détermination de la couleur (Arc-en-ciel progressif)
-    # Saturation 0% -> Bleu (Hue ~240)
-    # Saturation 100% -> Rouge (Hue 0)
     
-    # On clamp la saturation entre 0 et 1 pour le calcul de couleur
+    # On borne la saturation entre 0 et 1 pour le calcul de couleur
     sat_clamped = max(0.0, min(1.0, saturation))
     
     # Interpolation linéaire inversée : 0 -> 240 (Bleu), 1 -> 0 (Rouge)
@@ -116,8 +114,8 @@ def visualiser_flot(graph_obj, source, puit, file_name="flow_solution.html"):
             if file_name == "initial_graph.html":
                 flow = 1 # Pour la visualisation initiale, on met le flot à 100% de la capacité
             
-            # FILTRE : On n'affiche que les arcs qui avaient une capacité réelle OU qui transportent du flux.
-            if cap > 0 and flow > 0: 
+            # FILTRE : On n'affiche que les arcs qui transportent du flux.
+            if flow > 0: 
                 
                 # Récupération des attributs de style
                 color, width, _ = get_color_and_width(flow, cap)

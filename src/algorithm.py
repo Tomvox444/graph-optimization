@@ -1,7 +1,7 @@
 # src/algorithms.py
 from collections import deque
 import copy
-import numpy as np  # Décommente si tu utilises l'analyse spectrale
+import numpy as np  
 
 # --- 1. OUTILS DE BASE (BFS) ---
 
@@ -66,18 +66,13 @@ def theorem_menger(graph_original, source, sink):
                 
     return edmonds_karp(g_copy, source, sink)
 
-# --- 4. ANALYSE SPECTRALE (BONUS M. RIGO) ---
-# Nécessite numpy (à installer via pip install numpy)
+# --- 4. ANALYSE SPECTRALE  ---
 
 def analyse_spectrale(graph):
     """
     Calcule la connectivité algébrique (Valeur de Fiedler).
     Si numpy n'est pas installé, retourne None.
     """
-    try:
-        import numpy as np
-    except ImportError:
-        return None
 
     vertices = sorted(graph.get_all_vertices())
     n = len(vertices)
@@ -101,6 +96,9 @@ def analyse_spectrale(graph):
     # Calcul des valeurs propres
     vals = np.linalg.eigvalsh(L)
     vals.sort()
-    
     # La valeur de Fiedler est la 2ème plus petite valeur propre
+    if vals[1] < 1e-10:
+        return 0  # Graphes déconnectés ou quasi-déconnectés
+    
+    
     return vals[1] if len(vals) > 1 else 0
