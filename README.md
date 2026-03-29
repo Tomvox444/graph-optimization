@@ -5,6 +5,11 @@ This project provides a modular implementation of the Edmonds–Karp algorithm f
 
 It also includes tools for random graph generation, interactive visualization, and benchmarking on large-scale networks.
 
+## Collaboration
+This project was developed as a two-person collaboration.
+
+Most of the implementation work was carried out through joint working sessions on a shared machine, which explains why a majority of the commits are associated with a single GitHub account. The design, algorithmic choices, and development process were however conducted collaboratively throughout the project.
+
 ## Features
 - Edmonds–Karp maximum flow algorithm
 - Residual graph construction and analysis
@@ -19,7 +24,4 @@ It also includes tools for random graph generation, interactive visualization, a
 - Graph theory algorithms
 - Numerical and spectral methods
 
-## Collaboration
-This project was developed as a two-person collaboration.
 
-Most of the implementation work was carried out through joint working sessions on a shared machine, which explains why a majority of the commits are associated with a single GitHub account. The design, algorithmic choices, and development process were however conducted collaboratively throughout the project.
